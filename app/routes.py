@@ -2,13 +2,14 @@ from flask import render_template, flash, redirect, url_for
 from app import app
 from app.forms import LoginForm
 
+# stand-in user for testing
+user = {'fname': 'Eleni', 'lname': 'Lukaszczyk'}
 
 # decorators modify the function that follows them
 # home page
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'username': 'Christina'}
     posts = [
         {
             'author': {'username': 'John'},
@@ -60,3 +61,9 @@ def notes():
 @app.route('/groups')
 def groups():
     return render_template('groups.html', title='Study Groups')
+
+# profile page
+@app.route('/profile')
+def profile():
+    return render_template('profile.html', title='Profile', user=user)
+
