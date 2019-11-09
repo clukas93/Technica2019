@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Study Group</title>
+      {% else %}
+      <title>Welcome to Study Group!</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Study Group:
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('notes') }}">Notes</a>
+            <a href="{{ url_for('groups') }}">Study Groups</a>
+        </div>
+        <hr>
+        <!--{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}-->
+        {% block content %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Notes</h1>
+    {% for note in notes %}
+    <div><p><b>{{ note.name }}</b></p>
+        {% if note.list %}
+            {% for element in note.body %}
+                <p>{{ element }}</p>
+            {% endfor %}
+        {% else %}
+            <p>{{ note.body }}</p>
+        {% endif %}
+    </div>
+    <br>
+    {% endfor %}
+{% endblock %}
