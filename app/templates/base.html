@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html>
-    <head>
-      {% if title %}
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+    {% if title %}
       <title>{{ title }} - Study Group</title>
       {% else %}
       <title>Welcome to Study Group!</title>
-      {% endif %}
-    </head>
-    <body>
-        <div>Study Group:
-            <a href="{{ url_for('login') }}">Login</a>
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('notes') }}">Notes</a>
-            <a href="{{ url_for('groups') }}">Study Groups</a>
-            <a href="{{ url_for('profile') }}">Profile</a>
-        </div>
-        <hr>
+    {% endif %}
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-default">
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('notes') }}">Notes</a>
+        <a href="{{ url_for('groups') }}">Study Groups</a>
+        <a href="{{ url_for('profile') }}">Profile</a>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
         <!--{% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
@@ -25,6 +30,6 @@
         </ul>
         {% endif %}
         {% endwith %}-->
-        {% block content %}{% endblock %}
-    </body>
-</html>
+    {% block app_content %}{% endblock %}
+    </div>
+{% endblock %}
