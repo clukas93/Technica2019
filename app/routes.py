@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
-from app.forms import LoginForm
+from app.forms import LoginForm, RegisterForm
 
 class User:
     def __init__(self,id,username,fname,lname):
@@ -22,18 +22,18 @@ userList = [User(101, 'elukas', 'Eleni', 'Lukaszczyk'),User(102, 'a_opoulos', 'A
 @app.route('/')
 @app.route('/index')
 def index():
-    posts = [
-        {
-            'author': userList[2],
-            'body': 'I have the notes for chapter 7'
-        },
-        {
-            'author': userList[1],
-            'body': 'Is NaCl a strong or weak electrolyte?'
-        }
-    ]
+   # posts = [
+   #     {
+   #         'author': userList[2],
+   #         'body': 'I have the notes for chapter 7'
+   #     },
+   #     {
+   #         'author': userList[1],
+   #         'body': 'Is NaCl a strong or weak electrolyte?'
+   #     }
+    #]
 
-    return render_template('index.html', title='Home', user=this_user, posts=posts)
+    return render_template('index.html', title='Home', user=this_user)
 
 # login page
 @app.route('/login', methods=['GET', 'POST'])
@@ -44,6 +44,16 @@ def login():
             form.username.data, form.remember_me.data))
         return redirect(url_for('index'))
     return render_template('login.html', title='Log In', form=form)
+
+# register page
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        flash('Login requested for user {}, remember_me={}'.format(
+            form.username.data, form.remember_me.data))
+        return redirect(url_for('register'))
+    return render_template('register.html', title='Register', form=form)
 
 # notes page
 @app.route('/notes')

@@ -3,33 +3,40 @@
 
 {% block title %}
     {% if title %}
-      <title>{{ title }} - Study Group</title>
+      {{ title }} - STRIBE
       {% else %}
-      <title>Welcome to Study Group!</title>
+      Welcome to STRIBE!
     {% endif %}
 {% endblock %}
 
+
 {% block navbar %}
     <nav class="navbar navbar-default">
-        <a href="{{ url_for('login') }}">Login</a>
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('notes') }}">Notes</a>
-        <a href="{{ url_for('groups') }}">Study Groups</a>
-        <a href="{{ url_for('profile') }}">Profile</a>
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('register') }}">
+                <img src="https://i.ibb.co/yW7GSwG/Stribe-Logo.png" class="align-top" alt="STRIBE" height="110%"></a>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+              <li><a href="{{ url_for('index') }}">Groups</a></li>
+              <li><a href="{{ url_for('notes') }}">Notes</a></li>
+              <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            </ul>
+          </div>
+        </div>
     </nav>
+
 {% endblock %}
+
 
 {% block content %}
     <div class="container">
-        <!--{% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}-->
     {% block app_content %}{% endblock %}
     </div>
 {% endblock %}
